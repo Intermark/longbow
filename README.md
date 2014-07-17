@@ -2,18 +2,21 @@
 
 **Problem**
 
-One codebase. Multiple App Store submission targets with different icons, launch images, info.plist keys, etc.
+One codebase. Multiple App Store submission targets with different icons, launch images, info.plist keys, iTunes Connect submissions, etc.
 
 **Solution**
 
 ```
 $ longbow install
 $ longbow shoot
+$ longbow notch
 ```
 
 **About**
 
 Longbow is a command-line run ruby gem that duplicates the main target in your `.xcworkspace` or `.xcodeproj` file, then reads from a JSON file to fill out the rest of your new target. It looks for certain keys and does things like taking an icon image and resizing it for the various icons you'll need, and adding keys to the info.plist file for that target. The goal was to be practically autonomous in creating new targets and apps.
+
+Additionally, it can automate the process of setting up new apps (or new versions of existing apps) in iTunes Connect.
 
 **Requirements**
 
@@ -118,7 +121,6 @@ If you leave off the `-n` option, it will run for all targets in the `longbow.js
 ## The Future
 
 * Unit Tests
-* App Store deployment of Targets
 
 ## Contributing
 
