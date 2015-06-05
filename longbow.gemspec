@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'fileutils'
   spec.add_dependency 'commander', '~> 4.1'
   spec.add_dependency 'dotenv', '~> 0.7'
-  spec.add_dependency 'rmagick', '~> 2.13.2'
+  spec.add_dependency 'rmagick', '~> 2.15.2'
   spec.add_dependency 'xcodeproj'
   spec.add_dependency 'json'
 
