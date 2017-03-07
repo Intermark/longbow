@@ -110,6 +110,7 @@ If you leave off the `-n` option, it will run for all targets in the `longbow.js
 * `-d, --directory` - if not in the current directory, specify a new path
 * `-u, --url` - the url of a longbow formatted JSON file
 * `-i, --images` - set this flag to not recreate images in the longbow file
+* `-l, --launchscreenimages` - set this flag to create images for the launch screen in the longbow file
 
 `longbow shoot -n NameOfTarget -d ~/Path/To/App -u http://someurl.com/longbow.json`
 
