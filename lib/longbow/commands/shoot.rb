@@ -14,6 +14,7 @@ command :shoot do |c|
   c.option '-d', '--directory DIRECTORY', 'Path where the .xcodeproj or .xcworkspace file && the longbow.json file live.'
   c.option '-u', '--url URL', 'URL of a longbow formatted JSON file.'
   c.option '-i', '--images', 'Set this flag to not recreate images in the longbow file.'
+  c.option '-l', '--launchscreenimages', 'Set this flag to create launch screen images.'
 
   c.action do |args, options|
     # Check for newer version
@@ -23,6 +24,7 @@ command :shoot do |c|
     @target_name = options.name ? options.name : nil
     @directory = options.directory ? options.directory : Dir.pwd
     @noimages = options.images ? true : false
+    @lsimages = options.launchscreenimages ? true : false
     @url = options.url ? options.url : nil
     @targets = []
 
@@ -57,9 +59,12 @@ command :shoot do |c|
     # Begin
     @targets.each do |t|
       icon = t['icon_url'] || t['icon_path']
-      launch = t['launch_phone_p_url'] || t['launch_phone_p_path'] || t['launch_phone_l_url'] || t['launch_phone_l_path'] || t['launch_tablet_p_url'] || t['launch_tablet_p_path'] || t['launch_tablet_l_url'] || t['launch_tablet_l_path']
+      launch = nil
+      if @lsimages
+        launch = t['launch_phone_p_url'] || t['launch_phone_p_path'] || t['launch_phone_l_url'] || t['launch_phone_l_path'] || t['launch_tablet_p_url'] || t['launch_tablet_p_path'] || t['launch_tablet_l_url'] || t['launch_tablet_l_path']
+      end
       Longbow::update_target @directory, t['name'], obj['global_info_keys'], t['info_plist'], icon, launch
-      Longbow::create_images(@directory, t, obj) unless @noimages
+      Longbow::create_images(@directory, t, obj, @lsimages) unless @noimages
       Longbow::green "  Finished: #{t['name']}\n" unless $nolog
     end
   end

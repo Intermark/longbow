@@ -68,10 +68,11 @@ module Longbow
       settings['ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME'] = Longbow::stripped_text(target) if launch
       settings['SKIP_INSTALL'] = 'NO'
 
-      if File.exists? directory + '/Pods'
-        b.base_configuration_reference = base_config
-        settings['PODS_ROOT'] = '${SRCROOT}/Pods'
-      end
+
+      #if File.exists? directory + '/Pods'
+      #  b.base_configuration_reference = base_config
+      #  settings['PODS_ROOT'] = '${inherited}'
+      #end
     end
 
     # Save The Project

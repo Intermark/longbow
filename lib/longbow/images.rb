@@ -10,7 +10,7 @@ require 'utilities'
 module Longbow
 
   # Images
-  def self.create_images directory, t, obj
+  def self.create_images directory, t, obj, lsimages
     # Bad Params
     if !directory || !t || !obj
       return false
@@ -23,14 +23,16 @@ module Longbow
     # Resize Icons
     resize_icons directory, t, iPhone, iPad
 
-    # Resize Launch Images
-    resize_launch_images directory, t
-
     # Write JSON for Icon Assets
     write_json_for_icons directory, t, iPhone, iPad
 
-    # Write JSON for Launch Assets
-    write_json_for_launch_images directory, t
+    if lsimages 
+      # Resize Launch Images
+      resize_launch_images directory, t
+
+      # Write JSON for Launch Assets
+      write_json_for_launch_images directory, t
+    end
 
   end
 
